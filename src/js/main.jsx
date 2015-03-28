@@ -13,6 +13,8 @@ require([
   var audiolet = new Audiolet(),
     controller = new Controller(audiolet);
 
+  controller.connect(audiolet.output);
+
   React.render(
     <ControllerView controller={controller} />,
     document.body
