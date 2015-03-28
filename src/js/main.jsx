@@ -1,13 +1,20 @@
 require([
+  'Audiolet',
   'React',
-  'views/main'
+  'components/controller',
+  'views/controller'
 ], (
+  Audiolet,
   React,
-  MainView
+  Controller,
+  ControllerView
 ) => {
 
+  var audiolet = new Audiolet(),
+    controller = new Controller(audiolet);
+
   React.render(
-    <MainView />,
+    <ControllerView controller={controller} />,
     document.body
   );
 

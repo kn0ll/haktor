@@ -4,7 +4,7 @@ define([
   React
 ) => {
 
-  class MainView extends React.Component {
+  return class ControllerView extends React.Component {
 
     render() {
       return (
@@ -13,7 +13,5 @@ define([
     }
 
   }
-
-  return MainView;
 
 });
