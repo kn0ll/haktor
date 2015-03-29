@@ -1,19 +1,25 @@
 define([
   'React',
-  'views/mixer'
+  'views/mixer',
+  'views/deck'
 ], (
   React,
-  MixerView
+  MixerView,
+  DeckView
 ) => {
 
   return class ControllerView extends React.Component {
 
     render() {
       return (
-        <MixerView mixer={this.props.controller.mixer} />
+        <div className="controller">
+          <DeckView deck={this.props.controller.deckA} />
+          <DeckView deck={this.props.controller.deckB} />
+          <MixerView mixer={this.props.controller.mixer} />
+        </div>
       );
     }
 
-  }
+  };
 
 });
