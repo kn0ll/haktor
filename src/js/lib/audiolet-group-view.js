@@ -28,7 +28,7 @@ define([
     // todo: 'gain' here should be dynamic based on properties of the class
     componentDidMount() {
       var self = this,
-        params = this.getRenderedParameters();
+        params = this.getRenderedParameters? this.getRenderedParameters(): [];
 
       for (var i = 0; i < params.length; i++) {
         var param = params[0],

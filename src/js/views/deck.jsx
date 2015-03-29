@@ -1,36 +1,32 @@
 define([
   'React',
+  'Audiolet',
   'AudioletGroupView'
 ], (
   React,
+  Audiolet,
   AudioletGroupView
 ) => {
 
   return class DeckView extends AudioletGroupView {
 
-    getRenderedParameters() {
-      return [
-        this.props.deck.sine.frequency
-      ];
-    }
+    handleSetSource(e) {
+      var self = this,
+        reader = new FileReader();
 
-    handleSetSine(e) {
-      var val = e.target.value;
-      this.props.deck.sine.frequency.setValue(val);
+      reader.onload = (e) => self.props.deck.loadWav(e.target.result);
+      reader.readAsBinaryString(e.target.files[0]);
     }
 
     render() {
       return (
         <ul className="deck">
           <li>
-            <label htmlFor="frequency">frequency</label><br />
+            <label htmlFor="source">source</label><br />
             <input
-              name="frequency"
-              type="range"
-              min="100"
-              max="1000"
-              value={this.props.deck.sine.frequency.getValue()}
-              onChange={this.handleSetSine.bind(this)} />
+              name="source"
+              type="file"
+              onChange={this.handleSetSource.bind(this)} />
           </li>
         </ul>
       );
