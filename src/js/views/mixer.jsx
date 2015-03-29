@@ -10,27 +10,26 @@ define([
 
     getRenderedParameters() {
       return [
-        this.props.mixer.masterGain.value
+        this.props.mixer.gain.value
       ];
     }
 
-    handleSetMasterGain(e) {
+    handleSetgain(e) {
       var val = e.target.value;
-      this.props.mixer.masterGain.value.setValue(val / 100);
+      this.props.mixer.gain.value.setValue(val / 100);
     }
 
     render() {
       return (
         <ul className="mixer">
           <li>
-            <label htmlFor="masterGain">masterGain</label><br />
+            <label>gain</label><br />
             <input
-              name="masterGain"
               type="range"
               min="0"
               max="100"
-              value={this.props.mixer.masterGain.value.getValue() * 100}
-              onChange={this.handleSetMasterGain.bind(this)} />
+              value={this.props.mixer.gain.value.getValue() * 100}
+              onChange={this.handleSetgain.bind(this)} />
           </li>
         </ul>
       );

@@ -10,6 +10,12 @@ define([
 
   return class DeckView extends AudioletGroupView {
 
+    getRenderedParameters() {
+      return [
+        this.props.deck.mixer.gain.value
+      ];
+    }
+
     handleSetSource(e) {
       var self = this,
         reader = new FileReader();
@@ -22,13 +28,17 @@ define([
       this.props.deck.play();
     }
 
+    handleSetGain(e) {
+      var val = e.target.value;
+      this.props.deck.mixer.gain.value.setValue(val / 100);
+    }
+
     render() {
       return (
         <ul className="deck">
           <li>
-            <label htmlFor="source">source</label><br />
+            <label>source</label><br />
             <input
-              name="source"
               type="file"
               onChange={this.handleSetSource.bind(this)} />
           </li>
@@ -37,6 +47,15 @@ define([
               type="button"
               value="Play"
               onClick={this.handleSetPlay.bind(this)} />
+          </li>
+          <li>
+            <label>gain</label><br />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={this.props.deck.mixer.gain.value.getValue() * 100}
+              onChange={this.handleSetGain.bind(this)} />
           </li>
         </ul>
       );
