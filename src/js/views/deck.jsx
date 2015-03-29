@@ -18,6 +18,10 @@ define([
       reader.readAsBinaryString(e.target.files[0]);
     }
 
+    handleSetPlay(e) {
+      this.props.deck.play();
+    }
+
     render() {
       return (
         <ul className="deck">
@@ -27,6 +31,12 @@ define([
               name="source"
               type="file"
               onChange={this.handleSetSource.bind(this)} />
+          </li>
+          <li>
+            <input
+              type="button"
+              value="Play"
+              onClick={this.handleSetPlay.bind(this)} />
           </li>
         </ul>
       );

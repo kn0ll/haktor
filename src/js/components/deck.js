@@ -12,6 +12,7 @@ define([
         bufferPlayer = this.bufferPlayer = new BufferPlayer(audiolet, buffer, 1, 0, 1),
         output = this.outputs[0];
 
+      bufferPlayer.playing = false;
       bufferPlayer.connect(output);
     }
 
@@ -28,8 +29,11 @@ define([
       buffer.channelOffset = 0;
 
       bufferPlayer.buffer = buffer;
-      bufferPlayer.restartTrigger.setValue(0);
-      bufferPlayer.restartTrigger.setValue(1);
+    }
+
+    play() {
+      this.bufferPlayer.position = 0;
+      this.bufferPlayer.playing = true;
     }
 
   }
