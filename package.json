@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react": "^0.13.1"
+    "react": "^0.13.1",
+    "react-style": "^0.5.1"
   }
 }

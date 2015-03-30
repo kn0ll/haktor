@@ -1,4 +1,11 @@
-var Styles = {
+import StyleSheet from 'react-style';
+
+var Styles = StyleSheet.create({
+
+  controller: {
+    fontFamily: 'arial',
+    fontSize: 12
+  },
 
   decks: {
     display: '-webkit-box'
@@ -8,6 +15,6 @@ var Styles = {
     WebkitBoxFlex: 1
   }
 
-};
+});
 
 export default Styles;

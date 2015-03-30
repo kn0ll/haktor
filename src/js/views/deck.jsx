@@ -54,11 +54,11 @@ class DeckView extends AudioletGroupView {
 
   render() {
     return (
-      <ul style={this.props.style}>
+      <ul styles={[this.props.styles, Styles.deck]}>
         <li>
           <input
             type="file"
-            style={Styles.setSourceButton}
+            styles={[Styles.setSourceButton]}
             onChange={this.handleSetSource.bind(this)} />
         </li>
         <li>
