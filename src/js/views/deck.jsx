@@ -12,7 +12,8 @@ define([
 
     getRenderedParameters() {
       return [
-        this.props.deck.mixer.gain.value
+        this.props.deck.mixer.gain.value,
+        this.props.deck.bufferPlayer.playbackRate
       ];
     }
 
@@ -52,6 +53,11 @@ define([
       this.props.deck.mixer.gain.value.setValue(val / 100);
     }
 
+    handleSetTempo(e) {
+      var val = e.target.value;
+      this.props.deck.bufferPlayer.playbackRate.setValue(val / 100)
+    }
+
     render() {
       return (
         <ul className="deck">
@@ -87,6 +93,14 @@ define([
               type="button"
               value="4"
               onClick={this.handleCuePoint.bind(this)} /><br />
+          </li>
+          <li>
+            <input
+              type="range"
+              min="75"
+              max="125"
+              value={this.props.deck.bufferPlayer.playbackRate.getValue() * 100}
+              onChange={this.handleSetTempo.bind(this)} />
           </li>
           <li>
             <input
