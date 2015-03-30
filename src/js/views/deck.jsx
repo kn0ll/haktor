@@ -1,11 +1,13 @@
 define([
   'React',
   'Audiolet',
-  'AudioletGroupView'
+  'AudioletGroupView',
+  'styles/deck'
 ], (
   React,
   Audiolet,
-  AudioletGroupView
+  AudioletGroupView,
+  Styles
 ) => {
 
   return class DeckView extends AudioletGroupView {
@@ -60,10 +62,11 @@ define([
 
     render() {
       return (
-        <ul className="deck">
+        <ul style={this.props.style}>
           <li>
             <input
               type="file"
+              style={Styles.setSourceButton}
               onChange={this.handleSetSource.bind(this)} />
           </li>
           <li>

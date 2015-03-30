@@ -1,9 +1,11 @@
 define([
   'React',
+  'styles/controller',
   'views/mixer',
   'views/deck'
 ], (
   React,
+  Styles,
   MixerView,
   DeckView
 ) => {
@@ -12,10 +14,12 @@ define([
 
     render() {
       return (
-        <div className="controller">
-          <DeckView deck={this.props.controller.deckA} />
-          <DeckView deck={this.props.controller.deckB} />
+        <div>
           <MixerView mixer={this.props.controller.mixer} />
+          <div style={Styles.decks}>
+            <DeckView deck={this.props.controller.deckA} style={Styles.deck} />
+            <DeckView deck={this.props.controller.deckB} style={Styles.deck} />
+          </div>
         </div>
       );
     }
