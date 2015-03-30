@@ -1,3 +1,5 @@
+var Float32Array = window.Float32Array;
+
 function AudioFileRequest(url, async) {
     this.url = url;
     if (typeof async == 'undefined' || async == null) {
@@ -7598,3 +7600,14 @@ proto.getSyncWriteOffset = function () {
 };
 
 } (window.Sink);
+
+// todo: got to be a better way to load this through es6 module
+//       without editing this every time i need something new
+module.exports = {
+  Audiolet: Audiolet,
+  AudioletGroup: AudioletGroup,
+  AudioletBuffer: AudioletBuffer,
+  BufferPlayer: BufferPlayer,
+  Gain: Gain,
+  WAVDecoder: WAVDecoder
+};

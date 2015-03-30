@@ -1,11 +1,9 @@
-define(() => {
+var Styles = {
 
-  return {
-
-    setSourceButton: {
-      WebkitAppearance: 'button'
-    }
-
+  setSourceButton: {
+    WebkitAppearance: 'button'
   }
 
-});
+};
+
+export default Styles;

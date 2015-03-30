@@ -1,15 +1,13 @@
-define(() => {
+var Styles = {
 
-  return {
+  decks: {
+    display: '-webkit-box'
+  },
 
-    decks: {
-      display: '-webkit-box'
-    },
-
-    deck: {
-      WebkitBoxFlex: 1
-    }
-
+  deck: {
+    WebkitBoxFlex: 1
   }
 
-});
+};
+
+export default Styles;
