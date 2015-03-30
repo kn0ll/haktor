@@ -24,8 +24,27 @@ define([
       reader.readAsBinaryString(e.target.files[0]);
     }
 
-    handleSetPlay(e) {
-      this.props.deck.play();
+    handlePlayPause(e) {
+      var action = this.props.deck.bufferPlayer.playing? 'pause': 'play';
+      this.props.deck[action]();
+    }
+
+    handleStop(e) {
+      this.props.deck.stop();
+    }
+
+    handleCuePoint(e) {
+      var index = e.target.value,
+        deck = this.props.deck,
+        time = deck.bufferPlayer.position,
+        currentCuePoint = deck.getCuePoint(index);
+
+      if (currentCuePoint) {
+        deck.jumpToCuePoint(index);
+
+      } else {
+        deck.setCuePoint(index, time);
+      }
     }
 
     handleSetGain(e) {
@@ -37,7 +56,6 @@ define([
       return (
         <ul className="deck">
           <li>
-            <label>source</label><br />
             <input
               type="file"
               onChange={this.handleSetSource.bind(this)} />
@@ -45,11 +63,32 @@ define([
           <li>
             <input
               type="button"
-              value="Play"
-              onClick={this.handleSetPlay.bind(this)} />
+              value={this.props.deck.bufferPlayer.playing? 'Pause': 'Play'}
+              onClick={this.handlePlayPause.bind(this)} /><br />
+            <input
+              type="button"
+              value="Stop"
+              onClick={this.handleStop.bind(this)} />
           </li>
           <li>
-            <label>gain</label><br />
+            <input
+              type="button"
+              value="1"
+              onClick={this.handleCuePoint.bind(this)} /><br />
+            <input
+              type="button"
+              value="2"
+              onClick={this.handleCuePoint.bind(this)} /><br />
+            <input
+              type="button"
+              value="3"
+              onClick={this.handleCuePoint.bind(this)} /><br />
+            <input
+              type="button"
+              value="4"
+              onClick={this.handleCuePoint.bind(this)} /><br />
+          </li>
+          <li>
             <input
               type="range"
               min="0"

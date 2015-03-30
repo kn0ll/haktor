@@ -23,7 +23,6 @@ define([
       return (
         <ul className="mixer">
           <li>
-            <label>gain</label><br />
             <input
               type="range"
               min="0"

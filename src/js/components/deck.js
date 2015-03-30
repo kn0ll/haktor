@@ -4,7 +4,7 @@ define([
   Audiolet
 ) => {
 
-  class DeckMixer extends AudioletGroup {
+  class Mixer extends AudioletGroup {
 
     constructor(audiolet) {
       super(audiolet, 1, 1);
@@ -22,8 +22,9 @@ define([
     constructor(audiolet, freq) {
       super(audiolet, 0, 1);
       var buffer = new AudioletBuffer(2, 0),
-        bufferPlayer = this.bufferPlayer = new BufferPlayer(audiolet, buffer, 1, 0, 1),
-        mixer = this.mixer = new DeckMixer(audiolet),
+        bufferPlayer = this.bufferPlayer = new BufferPlayer(audiolet, buffer),
+        cuePoints = this.cuePoints = new Array(4),
+        mixer = this.mixer = new Mixer(audiolet),
         output = this.outputs[0];
 
       bufferPlayer.playing = false;
@@ -44,11 +45,33 @@ define([
       buffer.channelOffset = 0;
 
       bufferPlayer.buffer = buffer;
+      bufferPlayer.position = 0;
     }
 
     play() {
-      this.bufferPlayer.position = 0;
       this.bufferPlayer.playing = true;
+    }
+
+    pause() {
+      this.bufferPlayer.playing = false;
+    }
+
+    stop() {
+      this.bufferPlayer.playing = false;
+      this.bufferPlayer.position = 0;
+    }
+
+    setCuePoint(index, time) {
+      this.cuePoints[index] = time;
+    }
+
+    getCuePoint(index) {
+      return this.cuePoints[index];
+    }
+
+    jumpToCuePoint(index) {
+      var time = this.getCuePoint(index);
+      this.bufferPlayer.position = time;
     }
 
   }
