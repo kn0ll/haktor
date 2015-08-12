@@ -13,6 +13,14 @@ var Styles = StyleSheet.create({
 
   deck: {
     WebkitBoxFlex: 1
+  },
+
+  deckA: {
+    marginRight: 5
+  },
+
+  deckB: {
+    marginLeft: 5
   }
 
 });

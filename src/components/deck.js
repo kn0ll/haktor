@@ -1,17 +1,4 @@
-import {AudioletGroup, AudioletBuffer, BufferPlayer, Gain, WAVDecoder} from '../lib/audiolet';
-
-class Mixer extends AudioletGroup {
-
-  constructor(audiolet) {
-    super(audiolet, 1, 1);
-    var gain = this.gain = new Gain(audiolet, 0.5),
-      output = this.outputs[0];
-
-    this.inputs[0].connect(gain);
-    gain.connect(output);
-  }
-
-}
+import {AudioletGroup, AudioletBuffer, BufferPlayer, WAVDecoder} from '../lib/audiolet';
 
 class Deck extends AudioletGroup {
 
@@ -20,24 +7,20 @@ class Deck extends AudioletGroup {
     var buffer = new AudioletBuffer(2, 0),
       bufferPlayer = this.bufferPlayer = new BufferPlayer(audiolet, buffer),
       cuePoints = this.cuePoints = new Array(4),
-      mixer = this.mixer = new Mixer(audiolet),
       output = this.outputs[0];
 
     bufferPlayer.playing = false;
-    bufferPlayer.connect(mixer);
-    mixer.connect(output);
+    bufferPlayer.connect(output);
   }
 
-  loadWav(binaryString) {
-    var decoder = new WAVDecoder(),
-      decoded = decoder.decode(binaryString),
-      bufferPlayer = this.bufferPlayer,
-      buffer = new AudioletBuffer(decoded.channels.length, decoded.length);
+  loadWav(wav) {
+    var bufferPlayer = this.bufferPlayer,
+      buffer = new AudioletBuffer(wav.channels.length, wav.length);
 
-    buffer.length = decoded.length;
-    buffer.numberOfChannels = decoded.channels.length;
-    buffer.unslicedChannels = decoded.channels;
-    buffer.channels = decoded.channels;
+    buffer.length = wav.length;
+    buffer.numberOfChannels = wav.channels.length;
+    buffer.unslicedChannels = wav.channels;
+    buffer.channels = wav.channels;
     buffer.channelOffset = 0;
 
     bufferPlayer.buffer = buffer;

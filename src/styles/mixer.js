@@ -6,7 +6,9 @@ var Styles = StyleSheet.create({
     backgroundColor: '#E9E9E9',
     listStyle: 'none',
     margin: 0,
-    padding: 5
+    marginBottom: 10,
+    padding: 5,
+    border: '1px solid #4C5A68'
   },
 
   parameter: {

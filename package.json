@@ -1,6 +1,16 @@
 {
+  "name": "haktor",
+  "version": "1.0.0",
+  "description": "",
   "dependencies": {
-    "react": "^0.13.1",
-    "react-style": "^0.5.1"
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "optimist": "^0.6.1",
+    "pnglib": "^0.0.1",
+    "react": "^0.13.3",
+    "react-hot-loader": "^1.2.8",
+    "react-style": "^0.5.5",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
   }
 }

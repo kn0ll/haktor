@@ -10,8 +10,12 @@ class ControllerView extends React.Component {
       <div styles={[Styles.controller]}>
         <MixerView mixer={this.props.controller.mixer} />
         <div styles={[Styles.decks]}>
-          <DeckView deck={this.props.controller.deckA} styles={[Styles.deck]} />
-          <DeckView deck={this.props.controller.deckB} styles={[Styles.deck]} />
+          <DeckView
+            deck={this.props.controller.deckA}
+            styles={[Styles.deck, Styles.deckA]} />
+          <DeckView
+            deck={this.props.controller.deckB}
+            styles={[Styles.deck, Styles.deckB]} />
         </div>
       </div>
     );
